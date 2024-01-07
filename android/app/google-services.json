@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "476621520935",
+    "project_id": "fleacttech-b8eac",
+    "storage_bucket": "fleacttech-b8eac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476621520935:android:eecb4049a0fe49c3208e02",
+        "android_client_info": {
+          "package_name": "com.usama.fleact_tech"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8FBOcj85FrfD9dIQBUcsgo6v8Gd76ib8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
