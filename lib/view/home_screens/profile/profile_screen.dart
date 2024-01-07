@@ -127,7 +127,7 @@ class ProfileScreen extends StatelessWidget {
                                               children: [
                                                 Container(
                                                     height: height * 0.05,
-                                                    width: width * 0.2,
+                                                    width: width * 0.1,
                                                     decoration: BoxDecoration(
                                                       color: AppColors.white,
                                                       boxShadow: [
@@ -150,14 +150,13 @@ class ProfileScreen extends StatelessWidget {
                                                         ProfileScreenProvider>(
                                                       builder: (context, value,
                                                           child) {
-                                                        return InkWell(
-                                                          onTap: () {},
-                                                          child:
-                                                              const CircleAvatar(
-                                                            backgroundImage:
-                                                                NetworkImage(
-                                                                    'https://tse1.mm.bing.net/th?id=OIP.mEma0ZcipymPAHIYoIuFiAHaJa&pid=Api&P=0&h=220'),
-                                                          ),
+                                                        return CircleAvatar(
+                                                          backgroundImage:
+                                                              NetworkImage(
+                                                                  value.family[
+                                                                          index]
+                                                                      [
+                                                                      'image']),
                                                         );
                                                       },
                                                     )),
@@ -166,7 +165,14 @@ class ProfileScreen extends StatelessWidget {
                                                 ),
                                                 Text(
                                                   value.family[index]
-                                                      ['fullName'],
+                                                                  ['fullName']
+                                                              .toString()
+                                                              .length >
+                                                          7
+                                                      ? '${value.family[index]['fullName'].toString().substring(0, 7)}...'
+                                                      : value.family[index]
+                                                              ['fullName']
+                                                          .toString(),
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .headline3,
