@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fleact_tech/res/colors/app_colors.dart';
 import 'package:fleact_tech/utils/camera_choice.dart';
+import 'package:fleact_tech/utils/flushbar.dart';
 import 'package:fleact_tech/utils/navigator_class.dart';
 import 'package:fleact_tech/view/home_screens/main_%20bottom_bar.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ import 'package:intl/intl.dart';
 class AddFamilyMemberProvider with ChangeNotifier {
   final fullNameController = TextEditingController();
   final phoneController = TextEditingController();
-  final emailController = TextEditingController();
+  final cousinController = TextEditingController();
   final dobController = TextEditingController();
   File? _image;
   File? get image => _image;
@@ -70,28 +71,50 @@ class AddFamilyMemberProvider with ChangeNotifier {
     final news = FirebaseFirestore.instance.collection('family');
     final id = news.doc().id;
     try {
-      final ref =
-          firebase_storage.FirebaseStorage.instance.ref('/familyMember/$id');
-      firebase_storage.UploadTask uploadTask = ref.putFile(File(image!.path));
-      await Future.value(uploadTask).then((value) {
+      if (image != null) {
+        final ref =
+            firebase_storage.FirebaseStorage.instance.ref('/familyMember/$id');
+        firebase_storage.UploadTask uploadTask = ref.putFile(File(image!.path));
+        await Future.value(uploadTask).then((value) {
+          _loading = false;
+          notifyListeners();
+        }).onError((error, stackTrace) {
+          _loading = false;
+          notifyListeners();
+          FlushBarUtils.flushBar(
+              message: error.toString(), context: context, title: "Error");
+        });
+        final url = await ref.getDownloadURL();
+        news.doc(id).set({
+          'image': url,
+          'fullName': fullNameController.text.toString(),
+          'relation': cousinController.text,
+          'phone': phoneController.text,
+          'newsId': id,
+          'dob': dobController.text,
+          'gender': selectedRadio == 1 ? "Male" : 'Female',
+          'time': fomatedDate,
+        });
+
+        fullNameController.clear();
+        cousinController.clear();
+        phoneController.clear();
+        dobController.clear();
+        _selectedRadio = 0;
+        _image = null;
+        // ignore: use_build_context_synchronously
+        navigateToMyProfile(context);
+        // ignore: use_build_context_synchronously
+        FlushBarUtils.flushBar(
+            message: 'Family member added', context: context, title: 'Success');
+      } else {
         _loading = false;
         notifyListeners();
-      }).onError((error, stackTrace) {
-        _loading = false;
-        notifyListeners();
-      });
-      final url = await ref.getDownloadURL();
-      news.doc(id).set({
-        'image': url,
-        'fullName': fullNameController.text.toString(),
-        'email': emailController.text,
-        'phone': phoneController.text,
-        'newsId': id,
-        'dob': dobController.text,
-        'gender': selectedRadio == 1 ? "Male" : 'Female',
-        'time': fomatedDate,
-      });
-      navigateToMyProfile(context);
+        FlushBarUtils.flushBar(
+            message: 'Select Your Image First',
+            context: context,
+            title: 'Uncompleted Form');
+      }
     } catch (e) {
       print(e.toString());
     }

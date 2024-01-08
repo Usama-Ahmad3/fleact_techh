@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xff86022e),
       appBar: PreferredSize(
-        preferredSize: Size(width, height * 0.25),
+        preferredSize: Size(width, height * 0.27),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: width * 0.05),
           child: Column(
@@ -30,24 +30,24 @@ class HomeScreen extends StatelessWidget {
                 height: height * 0.01,
               ),
               Text(
-                'Hey, Emily',
+                'Hey, Emily!',
                 style: Theme.of(context)
                     .textTheme
                     .headline1!
                     .copyWith(color: AppColors.white),
               ),
               SizedBox(
-                height: height * 0.025,
+                height: height * 0.027,
               ),
               Text(
-                'Wanna book appointment',
+                'Wanna book appointment?',
                 style: Theme.of(context)
                     .textTheme
                     .headline2!
                     .copyWith(color: AppColors.white),
               ),
               SizedBox(
-                height: height * 0.025,
+                height: height * 0.035,
               ),
               Center(
                   child: ButtonWidget(text: 'Book Appointment', onTap: () {})),
@@ -67,12 +67,12 @@ class HomeScreen extends StatelessWidget {
                       topRight: Radius.circular(20))),
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: width * 0.059, vertical: height * 0.02),
+                    horizontal: width * 0.05, vertical: height * 0.02),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('You have incoming appointment!'),
+                      const Text('You have an upcoming appointment!!'),
                       SizedBox(
                         height: height * 0.01,
                       ),
@@ -84,17 +84,21 @@ class HomeScreen extends StatelessWidget {
                             SizedBox(
                               width: width * 0.01,
                             ),
-                            const CircleAvatar(
-                              backgroundImage: NetworkImage(
+                            CircleAvatar(
+                              radius: height * 0.03,
+                              backgroundImage: const NetworkImage(
                                   'https://th.bing.com/th?id=OIP.rzvJIIoK4rs7kpN44Q5YegHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2'),
                             ),
                             SizedBox(
-                              width: width * 0.01,
+                              width: width * 0.02,
                             ),
-                            const Text('Dr. Emma Mia'),
+                            Text(
+                              'Dr. Emma Mia',
+                              style: Theme.of(context).textTheme.headline1,
+                            ),
                             const Spacer(),
                             Container(
-                              height: height * 0.04,
+                              height: height * 0.05,
                               width: width * 0.3,
                               decoration: BoxDecoration(
                                   border: Border.all(color: AppColors.border),
@@ -109,6 +113,9 @@ class HomeScreen extends StatelessWidget {
                           ],
                         ),
                       ),
+                      SizedBox(
+                        height: height * 0.015,
+                      ),
                       Container(
                         height: height * 0.07,
                         width: width,
@@ -119,19 +126,39 @@ class HomeScreen extends StatelessWidget {
                         child: Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: width * 0.05),
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: [
-                                  Icon(Icons.calendar_month),
-                                  Text('Monday, May 12'),
+                                  Icon(
+                                    Icons.calendar_month,
+                                    color: AppColors.themeColor,
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.01,
+                                  ),
+                                  Text(
+                                    'Monday, May 12',
+                                    style:
+                                        Theme.of(context).textTheme.headline2,
+                                  ),
                                 ],
                               ),
                               Row(
                                 children: [
-                                  Icon(Icons.access_time_rounded),
-                                  Text('11:00 - 12:00 Am')
+                                  Icon(
+                                    Icons.access_time_rounded,
+                                    color: AppColors.themeColor,
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.015,
+                                  ),
+                                  Text(
+                                    '11:00 - 12:00 Am',
+                                    style:
+                                        Theme.of(context).textTheme.headline2,
+                                  )
                                 ],
                               )
                             ],
@@ -141,12 +168,24 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(
                         height: height * 0.03,
                       ),
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [Text('Health Articles'), Text('See All')],
+                        children: [
+                          Text(
+                            'Health Articles',
+                            style: Theme.of(context).textTheme.headline1,
+                          ),
+                          Text(
+                            'See All',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline1!
+                                .copyWith(color: AppColors.grey),
+                          )
+                        ],
                       ),
                       SizedBox(
-                        height: height * 0.01,
+                        height: height * 0.025,
                       ),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,

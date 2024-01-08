@@ -50,6 +50,7 @@ class SignupProvider with ChangeNotifier {
         'newsId': id,
       });
       authCheck.saveLogin(true);
+
       navigateToHomeScreen(context);
     }).onError((error, stackTrace) {
       FlushBarUtils.flushBar(

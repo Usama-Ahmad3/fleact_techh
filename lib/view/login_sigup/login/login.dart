@@ -101,10 +101,10 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.01,
+                  height: height * 0.02,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                  padding: EdgeInsets.symmetric(horizontal: width * 0.052),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

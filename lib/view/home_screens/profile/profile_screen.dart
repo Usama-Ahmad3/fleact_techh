@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +26,16 @@ class ProfileScreen extends StatelessWidget {
               .copyWith(color: AppColors.white),
         ),
         centerTitle: true,
-        leading: Icon(
-          Icons.notes,
-          color: AppColors.white,
+        leading: Consumer<ProfileScreenProvider>(
+          builder: (context, value, child) => InkWell(
+            onTap: () {
+              value.logout(context);
+            },
+            child: Icon(
+              Icons.notes,
+              color: AppColors.white,
+            ),
+          ),
         ),
         actions: [
           Icon(
@@ -66,7 +73,7 @@ class ProfileScreen extends StatelessWidget {
                         }),
                       ),
                       SizedBox(
-                        height: height * 0.01,
+                        height: height * 0.02,
                       ),
                       const Align(
                           alignment: Alignment.center,
@@ -88,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           ...List.generate(
-                              2,
+                              text1.length,
                               (index) => Padding(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: width * 0.02),
@@ -96,8 +103,8 @@ class ProfileScreen extends StatelessWidget {
                                         height: height,
                                         width: width,
                                         context: context,
-                                        text1: '23y 4m',
-                                        text2: 'age'),
+                                        text1: text1[index],
+                                        text2: text2[index]),
                                   ))
                         ],
                       ),
@@ -106,7 +113,10 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       Text(
                         'Family Members',
-                        style: Theme.of(context).textTheme.headline1,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline1!
+                            .copyWith(fontWeight: FontWeight.w500),
                       ),
                       SizedBox(
                         height: height * 0.02,
@@ -125,41 +135,46 @@ class ProfileScreen extends StatelessWidget {
                                       return index < len
                                           ? Column(
                                               children: [
-                                                Container(
-                                                    height: height * 0.05,
-                                                    width: width * 0.1,
-                                                    decoration: BoxDecoration(
-                                                      color: AppColors.white,
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                            color: AppColors
-                                                                .shadowColor
-                                                                .withOpacity(
-                                                                    0.2),
-                                                            offset:
-                                                                const Offset(
-                                                                    1, 1),
-                                                            blurStyle: BlurStyle
-                                                                .normal,
-                                                            blurRadius: 12,
-                                                            spreadRadius: 3)
-                                                      ],
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: Consumer<
-                                                        ProfileScreenProvider>(
-                                                      builder: (context, value,
-                                                          child) {
-                                                        return CircleAvatar(
-                                                          backgroundImage:
-                                                              NetworkImage(
-                                                                  value.family[
-                                                                          index]
-                                                                      [
-                                                                      'image']),
-                                                        );
-                                                      },
-                                                    )),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      right: width * 0.04),
+                                                  child: Container(
+                                                      height: height * 0.05,
+                                                      width: width * 0.12,
+                                                      decoration: BoxDecoration(
+                                                        color: AppColors.white,
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                              color: AppColors
+                                                                  .shadowColor
+                                                                  .withOpacity(
+                                                                      0.1),
+                                                              offset:
+                                                                  const Offset(
+                                                                      1, 1),
+                                                              blurStyle:
+                                                                  BlurStyle
+                                                                      .normal,
+                                                              blurRadius: 1,
+                                                              spreadRadius: 1)
+                                                        ],
+                                                        shape: BoxShape.circle,
+                                                      ),
+                                                      child: Consumer<
+                                                          ProfileScreenProvider>(
+                                                        builder: (context,
+                                                            value, child) {
+                                                          return CircleAvatar(
+                                                            backgroundImage:
+                                                                NetworkImage(
+                                                                    value.family[
+                                                                            index]
+                                                                        [
+                                                                        'image']),
+                                                          );
+                                                        },
+                                                      )),
+                                                ),
                                                 SizedBox(
                                                   height: height * 0.008,
                                                 ),
@@ -183,7 +198,7 @@ class ProfileScreen extends StatelessWidget {
                                               children: [
                                                 Container(
                                                     height: height * 0.05,
-                                                    width: width * 0.2,
+                                                    width: width * 0.12,
                                                     decoration: BoxDecoration(
                                                       color: AppColors.white,
                                                       boxShadow: [
@@ -217,7 +232,16 @@ class ProfileScreen extends StatelessWidget {
                                                       },
                                                     )),
                                                 SizedBox(
-                                                  height: height * 0.013,
+                                                  height: height * 0.008,
+                                                ),
+                                                Text(
+                                                  'Add',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3!
+                                                      .copyWith(
+                                                          color: AppColors
+                                                              .themeColor),
                                                 )
                                               ],
                                             );
@@ -231,7 +255,10 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       Text(
                         'Past Appointments',
-                        style: Theme.of(context).textTheme.headline1,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline1!
+                            .copyWith(fontWeight: FontWeight.w500),
                       ),
                       SizedBox(
                         height: height * 0.01,
@@ -310,19 +337,19 @@ class ProfileScreen extends StatelessWidget {
                                                   child: Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
-                                                            .center,
+                                                            .spaceEvenly,
                                                     children: [
                                                       Icon(
                                                         Icons.favorite,
                                                         color: AppColors
                                                             .themeColor,
-                                                        size: height * 0.023,
+                                                        size: height * 0.02,
                                                       ),
                                                       Text(
                                                         '4.2',
                                                         style: Theme.of(context)
                                                             .textTheme
-                                                            .headline2!
+                                                            .headline3!
                                                             .copyWith(
                                                                 color: AppColors
                                                                     .themeColor),
@@ -338,7 +365,7 @@ class ProfileScreen extends StatelessWidget {
                                                 'Submitted',
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .headline2!
+                                                    .headline3!
                                                     .copyWith(
                                                         color: AppColors
                                                             .themeColor),
@@ -349,20 +376,19 @@ class ProfileScreen extends StatelessWidget {
                                             children: [
                                               Icon(
                                                 Icons.video_call,
-                                                color: AppColors.themeColor,
+                                                color: AppColors.black,
                                                 size: height * 0.023,
                                               ),
                                               SizedBox(
-                                                width: width * 0.04,
+                                                width: width * 0.01,
                                               ),
                                               Text(
                                                 'Audio Session',
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .headline2!
+                                                    .headline3!
                                                     .copyWith(
-                                                        color: AppColors
-                                                            .themeColor),
+                                                        color: AppColors.black),
                                               ),
                                             ],
                                           ),
@@ -409,14 +435,17 @@ class ProfileScreen extends StatelessWidget {
       required String text2}) {
     return Container(
       height: height * 0.09,
-      width: width * 0.3,
+      width: width * 0.27,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(height * 0.02),
           border: Border.all(color: AppColors.grey)),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(text1),
+          SizedBox(
+            height: height * 0.002,
+          ),
           Text(
             text2,
             style: Theme.of(context)
@@ -428,4 +457,7 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
   }
+
+  List text1 = ['23y 4m', 'Male'];
+  List text2 = ['age', 'Birth Gender'];
 }

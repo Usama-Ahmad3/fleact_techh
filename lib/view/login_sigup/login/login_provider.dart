@@ -6,6 +6,8 @@ import 'package:fleact_tech/view/login_sigup/forget_password/forget_password.dar
 import 'package:fleact_tech/view/login_sigup/signup/signup.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../../utils/flushbar.dart';
+
 class LoginProvider with ChangeNotifier {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -37,7 +39,16 @@ class LoginProvider with ChangeNotifier {
       _loading = false;
       notifyListeners();
       authCheck.saveLogin(true);
+      emailController.clear();
+      passwordController.clear();
+      FlushBarUtils.flushBar(
+          context: context, title: "Login Successful", message: 'Success');
       navigateToHomeScreen(context);
+    }).onError((error, stackTrace) {
+      FlushBarUtils.flushBar(
+          context: context, title: "Error Catch", message: error.toString());
+      _loading = false;
+      notifyListeners();
     });
   }
 

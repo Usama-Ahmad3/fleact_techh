@@ -26,7 +26,7 @@ class ImageWidget extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                  height: height * 0.15,
+                  height: height * 0.14,
                   width: width * 0.5,
                   decoration: BoxDecoration(
                     color: AppColors.white,
@@ -35,7 +35,7 @@ class ImageWidget extends StatelessWidget {
                           color: AppColors.shadowColor.withOpacity(0.2),
                           offset: const Offset(1, 1),
                           blurStyle: BlurStyle.normal,
-                          blurRadius: 12,
+                          blurRadius: 2,
                           spreadRadius: 3)
                     ],
                     shape: BoxShape.circle,
@@ -50,7 +50,7 @@ class ImageWidget extends StatelessWidget {
                         )),
               Positioned(
                   bottom: 0,
-                  right: width * 0.1,
+                  right: width * 0.08,
                   child: InkWell(
                     onTap: onTap,
                     child: Container(

@@ -23,7 +23,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
     return InkWell(
       onTap: widget.onTap,
       child: Container(
-        height: height * 0.07,
+        height: height * 0.065,
         width: width * 0.85,
         decoration: BoxDecoration(
             boxShadow: [

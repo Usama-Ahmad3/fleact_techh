@@ -68,12 +68,15 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         onTap: widget.onTap,
         keyboardType: widget.type,
         style: Theme.of(context).textTheme.headline2!.copyWith(
+            height: 0.02,
             fontSize: widget.controller.text.length > 8 ? 14 : 16,
             color: AppColors.black),
         cursorColor: AppColors.black,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         textAlign: TextAlign.start,
         decoration: InputDecoration(
+          constraints: BoxConstraints(
+              maxHeight: MediaQuery.sizeOf(context).height * 0.06),
           suffix: widget.suffix,
           hintText: widget.hintText,
           errorStyle: const TextStyle(
@@ -96,7 +99,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           fillColor: widget.fillColor ?? AppColors.white,
           filled: true,
           enabledBorder: widget.border,
-          focusedBorder: widget.border,
+          focusedBorder: widget.focusBorder,
           disabledBorder: widget.border,
         ),
       ),

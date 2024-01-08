@@ -10,7 +10,7 @@ class TextData extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: width * 0.07, vertical: height * 0.008),
+          horizontal: width * 0.06, vertical: height * 0.01),
       child: Text(
         text,
         style: Theme.of(context).textTheme.headline2,
