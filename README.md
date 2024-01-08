@@ -11,7 +11,7 @@
   <a href="https://github.com/Usama-Ahmad3">
     <img src="https://img.shields.io/badge/Github-white?style=for-the-badge&logo=Github&logoColor=black" alt="Github Badge"/>
   </a>
-   <a href="https://tse3.mm.bing.net/th?id=OIP.d5futl9_HMoiD0hPTuYylwHaHX&pid=Api&P=0&h=220">
+   <a href="https://www.linkedin.com/in/usama-ahmad-a5780a1a4/">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge" style="width=50; height=50"/>
   </a>
 </div>
