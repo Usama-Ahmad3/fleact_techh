@@ -12,7 +12,7 @@
     <img src="https://img.shields.io/badge/Github-white?style=for-the-badge&logo=Github&logoColor=black" alt="Github Badge"/>
   </a>
    <a href="https://tse3.mm.bing.net/th?id=OIP.d5futl9_HMoiD0hPTuYylwHaHX&pid=Api&P=0&h=220">
-    <img src="https://tse3.mm.bing.net/th?id=OIP.d5futl9_HMoiD0hPTuYylwHaHX&pid=Api&P=0&h=220" alt="LinkedIn Badge"/>
+    <img src="https://tse3.mm.bing.net/th?id=OIP.d5futl9_HMoiD0hPTuYylwHaHX&pid=Api&P=0&h=220" alt="LinkedIn Badge" style="width=50; height=50"/>
   </a>
 </div>
 
